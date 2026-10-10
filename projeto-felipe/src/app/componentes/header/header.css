@@ -1,0 +1,161 @@
+:host {
+  display: block;
+}
+
+.top-strip {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 6%;
+  background: #171326;
+  color: #c4b5fd;
+  font-size: 11px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 6%;
+  border-bottom: 1px solid #272a3a;
+  background: #0c0e17;
+  color: #f4f5fb;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  color: white;
+  text-decoration: none;
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.logo-icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #8b5cf6, #4f46e5);
+}
+
+.logo-accent {
+  color: #22d3ee;
+}
+
+.search {
+  display: flex;
+  flex: 1;
+  max-width: 550px;
+  height: 44px;
+  border: 1px solid #30354a;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #141724;
+}
+
+.search input {
+  flex: 1;
+  min-width: 0;
+  padding: 0 14px;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: white;
+}
+
+.search button {
+  width: 48px;
+  border: 0;
+  background: #8b5cf6;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-action {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px;
+  border: 0;
+  background: transparent;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.header-action small,
+.header-action strong {
+  display: block;
+}
+
+.header-action small {
+  margin-bottom: 3px;
+  color: #9299ad;
+  font-size: 10px;
+}
+
+.header-action strong {
+  font-size: 12px;
+}
+
+.action-icon {
+  font-size: 23px;
+}
+
+@media (max-width: 850px) {
+  .header {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .search {
+    order: 3;
+    flex-basis: 100%;
+    max-width: none;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-strip {
+    flex-direction: column;
+    gap: 5px;
+    padding: 9px 5%;
+  }
+
+  .header {
+    padding: 16px 5%;
+  }
+
+  .logo {
+    font-size: 22px;
+  }
+
+  .header-action {
+    gap: 5px;
+  }
+
+  .header-action strong {
+    font-size: 10px;
+  }
+
+  .action-icon {
+    font-size: 19px;
+  }
+}

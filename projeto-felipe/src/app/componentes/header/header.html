@@ -1,1 +1,35 @@
-<p>header works!</p>
+<div class="top-strip">
+    <span>🚀 Performance para quem joga sério</span>
+    <span>Ofertas especiais todos os dias</span>
+</div>
+
+<header class="header">
+    <a class="logo" routerLink="/" aria-label="TechPec - início">
+        <span class="logo-icon">T</span>
+        <span>Tech<span class="logo-accent">Pec</span></span>
+    </a>
+
+    <form class="search" (ngSubmit)="onSearch($event)">
+        <input type="search" placeholder="Busque produtos, marcas e categorias..." aria-label="Buscar produtos"
+            [(ngModel)]="searchTerm" name="search" />
+        <button type="submit" aria-label="Pesquisar">⌕</button>
+    </form>
+
+    <div class="header-actions">
+        <button class="header-action" type="button" routerLink="/login">
+            <span class="action-icon">♙</span>
+            <span>
+                <small>Olá, gamer</small>
+                <strong>Minha conta</strong>
+            </span>
+        </button>
+
+        <button class="header-action cart-button" type="button" (click)="openCart()" aria-label="Ver carrinho">
+            <span class="action-icon">🛒</span>
+            <span>
+                <small>Meu</small>
+                <strong>Carrinho</strong>
+            </span>
+        </button>
+    </div>
+</header>

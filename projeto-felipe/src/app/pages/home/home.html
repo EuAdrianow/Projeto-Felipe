@@ -1,0 +1,359 @@
+<div class="store">
+
+    <!-- CABEÇALHO -->
+    <app-header (cartClicked)="showCart()">
+    </app-header>
+
+    <!-- MENU DE NAVEGAÇÃO -->
+    <app-menu></app-menu>
+
+    <main>
+
+        <!-- BANNER PRINCIPAL -->
+        <section class="hero">
+            <div class="hero-content">
+                <span class="eyebrow">
+                    <span class="live-dot"></span>
+                    LEVEL UP YOUR GAME
+                </span>
+
+                <h1>
+                    Seu próximo nível
+                    começa <span>aqui.</span>
+                </h1>
+
+                <p>
+                    Hardware de alta performance, periféricos insanos
+                    e tudo para montar o setup dos seus sonhos.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#ofertas" class="btn btn-primary">
+                        Explorar ofertas <span>↗</span>
+                    </a>
+
+                    <a href="#categorias" class="btn btn-secondary">
+                        Montar meu setup
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div>
+                        <strong>100%</strong>
+                        <small>Foco gamer</small>
+                    </div>
+
+                    <div>
+                        <strong>+500</strong>
+                        <small>Possibilidades</small>
+                    </div>
+
+                    <div>
+                        <strong>GG!</strong>
+                        <small>Seu setup ideal</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual" aria-label="Setup gamer ilustrativo">
+                <div class="visual-glow"></div>
+                <div class="visual-label label-top">TECHPEC / GAMING</div>
+
+                <div class="setup-art">
+                    <div class="monitor">
+                        <div class="monitor-screen">
+                            <div class="screen-orb"></div>
+                            <div class="screen-grid"></div>
+                            <span class="screen-caption">GAME<br>ON.</span>
+                        </div>
+
+                        <div class="monitor-neck"></div>
+                        <div class="monitor-base"></div>
+                    </div>
+
+                    <div class="pc-case">
+                        <div class="pc-glass">
+                            <div class="fan fan-one"></div>
+                            <div class="fan fan-two"></div>
+                            <div class="fan fan-three"></div>
+                            <div class="gpu"></div>
+                        </div>
+
+                        <div class="pc-front"></div>
+                    </div>
+
+                    <div class="keyboard-art">
+                        <span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+
+                <div class="floating-card">
+                    <span class="floating-icon">✦</span>
+                    <span>
+                        <small>SEU SETUP</small>
+                        <strong>Sem limites.</strong>
+                    </span>
+                </div>
+
+                <div class="visual-label label-bottom">
+                    EST. FOR GAMERS
+                </div>
+            </div>
+        </section>
+
+        <!-- BENEFÍCIOS -->
+        <section class="benefits" id="beneficios">
+            <div class="benefit">
+                <span class="benefit-icon">🚚</span>
+                <div>
+                    <strong>Entrega para todo o Brasil</strong>
+                    <small>Consulte seu CEP</small>
+                </div>
+            </div>
+
+            <div class="benefit">
+                <span class="benefit-icon">🔒</span>
+                <div>
+                    <strong>Compra segura</strong>
+                    <small>Seus dados protegidos</small>
+                </div>
+            </div>
+
+            <div class="benefit">
+                <span class="benefit-icon">💳</span>
+                <div>
+                    <strong>Facilidade no pagamento</strong>
+                    <small>Consulte as condições</small>
+                </div>
+            </div>
+
+            <div class="benefit">
+                <span class="benefit-icon">🎧</span>
+                <div>
+                    <strong>Suporte especializado</strong>
+                    <small>Estamos aqui para ajudar</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATEGORIAS -->
+        <section class="section categories-section" id="categorias">
+            <div class="section-heading">
+                <div>
+                    <span class="section-kicker">
+                        ENCONTRE SEU EQUIPAMENTO
+                    </span>
+
+                    <h2>
+                        Explore por <span>categoria</span>
+                    </h2>
+                </div>
+
+                <p>O hardware certo faz toda a diferença.</p>
+            </div>
+
+            <div class="category-grid">
+                <button type="button" class="category-card" *ngFor="let category of categories"
+                    (click)="selectCategory(category.name)"
+                    [class.category-active]="selectedCategory === category.name">
+
+                    <span class="category-art" [ngClass]="category.style">
+                        {{ category.icon }}
+                    </span>
+
+                    <strong>{{ category.name }}</strong>
+
+                    <span class="category-link">
+                        Explorar produtos ↗
+                    </span>
+                </button>
+            </div>
+        </section>
+
+        <!-- OFERTAS -->
+        <section class="section offers-section" id="ofertas">
+            <div class="offer-banner">
+                <div>
+                    <span class="section-kicker">
+                        OFERTAS QUE DÃO GAME OVER NO PREÇO
+                    </span>
+
+                    <h2>
+                        Upgrade no setup.<br>
+                        <span>Sem perder a partida.</span>
+                    </h2>
+
+                    <p>
+                        Encontre equipamentos para elevar sua gameplay.
+                    </p>
+
+                    <a href="#produtos" class="btn btn-primary">
+                        Ver ofertas ↗
+                    </a>
+                </div>
+
+                <div class="offer-decoration">
+                    <span class="offer-percent">GG</span>
+                    <span class="offer-caption">
+                        GOOD GEAR.<br>
+                        GREAT GAMES.
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUTOS -->
+        <section class="section products-section" id="produtos">
+            <div class="section-heading products-heading">
+                <div>
+                    <span class="section-kicker">
+                        ESCOLHIDOS PARA VOCÊ
+                    </span>
+
+                    <h2>
+                        {{ selectedCategory ? selectedCategory : 'Destaques da' }}
+                        <span>
+                            {{ selectedCategory ? 'TechPec' : 'semana' }}
+                        </span>
+                    </h2>
+                </div>
+
+                <button class="clear-filter" *ngIf="selectedCategory || searchTerm" type="button"
+                    (click)="clearFilters()">
+                    Limpar filtros ✕
+                </button>
+            </div>
+
+            <div class="product-toolbar">
+                <span>
+                    {{ filteredProducts.length }} produtos encontrados
+                </span>
+
+                <label>
+                    Ordenar por
+
+                    <select [(ngModel)]="sortOrder" name="sort" (change)="sortProducts()">
+
+                        <option value="featured">Destaques</option>
+                        <option value="price-asc">Menor preço</option>
+                        <option value="price-desc">Maior preço</option>
+                        <option value="name">Nome</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="product-grid" *ngIf="filteredProducts.length; else noProducts">
+
+                <article class="product-card" *ngFor="let product of filteredProducts">
+
+                    <div class="product-image">
+                        <span class="product-tag" *ngIf="product.badge">
+                            {{ product.badge }}
+                        </span>
+
+                        <button type="button" class="favorite" (click)="toggleFavorite(product)"
+                            [class.is-favorite]="product.favorite" [attr.aria-label]="product.favorite
+                ? 'Remover dos favoritos'
+                : 'Adicionar aos favoritos'">
+
+                            {{ product.favorite ? '♥' : '♡' }}
+                        </button>
+
+                        <img [src]="product.image" [alt]="product.name" loading="lazy">
+                    </div>
+
+                    <div class="product-info">
+                        <span class="product-category">
+                            {{ product.category }}
+                        </span>
+
+                        <h3>{{ product.name }}</h3>
+
+                        <div class="rating">
+                            <span>★★★★★</span>
+                            <small>({{ product.reviews }})</small>
+                        </div>
+
+                        <div class="price-area">
+                            <del *ngIf="product.oldPrice">
+                                {{ product.oldPrice | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+                            </del>
+
+                            <strong>
+                                {{ product.price | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+                            </strong>
+
+                            <small>no PIX</small>
+
+                            <span *ngIf="product.installments">
+                                ou até 10x de
+                                {{ (product.price / 10) | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+                            </span>
+                        </div>
+
+                        <button type="button" class="add-cart" (click)="addToCart(product)">
+                            <span>🛒</span>
+                            Adicionar ao carrinho
+                        </button>
+                    </div>
+                </article>
+            </div>
+
+            <ng-template #noProducts>
+                <div class="empty-state">
+                    <span>⌕</span>
+
+                    <h3>Nenhum produto encontrado</h3>
+
+                    <p>
+                        Tente outra busca ou explore todas as categorias.
+                    </p>
+
+                    <button class="btn btn-primary" type="button" (click)="clearFilters()">
+                        Ver todos os produtos
+                    </button>
+                </div>
+            </ng-template>
+        </section>
+
+        <!-- NEWSLETTER -->
+        <section class="newsletter">
+            <div>
+                <span class="section-kicker">
+                    SUA PRÓXIMA VANTAGEM COMEÇA AQUI
+                </span>
+
+                <h2>
+                    Fique por dentro do <span>meta gamer.</span>
+                </h2>
+
+                <p>
+                    Receba novidades, lançamentos e ofertas especiais.
+                </p>
+            </div>
+
+            <form class="newsletter-form" (ngSubmit)="subscribe($event)">
+
+                <input type="email" placeholder="Seu melhor e-mail" aria-label="Seu melhor e-mail" [(ngModel)]="email"
+                    name="email" required>
+
+                <button type="submit" class="btn btn-primary">
+                    Quero receber ↗
+                </button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <app-footer></app-footer>
+
+    <!-- NOTIFICAÇÕES -->
+    <div class="toast" *ngIf="toastMessage" role="status">
+        <span>✓</span>
+        {{ toastMessage }}
+    </div>
+
+</div>

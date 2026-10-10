@@ -1,0 +1,38 @@
+:host {
+  display: block;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 28px;
+  padding: 15px 5%;
+  border-bottom: 1px solid #25293a;
+  background: #10121d;
+}
+
+.navigation a {
+  color: #c0c5d6;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.navigation a:hover {
+  color: #22d3ee;
+}
+
+@media (max-width: 600px) {
+  .navigation {
+    justify-content: flex-start;
+    gap: 18px;
+    padding: 14px 5%;
+  }
+
+  .navigation a {
+    font-size: 11px;
+  }
+}

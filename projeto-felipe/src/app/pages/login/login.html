@@ -1,0 +1,189 @@
+<div class="login-page">
+    <div class="background-effects">
+        <div class="glow glow-purple"></div>
+        <div class="glow glow-cyan"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <header class="login-header">
+        <a class="logo" routerLink="/" aria-label="TechPec - início">
+            <span class="logo-icon">T</span>
+            <span>Tech<span class="logo-accent">Pec</span></span>
+        </a>
+
+        <a routerLink="/" class="back-link">
+            <span>←</span> Voltar à loja
+        </a>
+    </header>
+
+    <main class="login-main">
+        <section class="login-card">
+
+            <div class="login-brand">
+                <div class="brand-symbol">T</div>
+                <span class="brand-status">
+                    <span class="status-dot"></span>
+                    PLAYER ACCESS
+                </span>
+            </div>
+
+            <div class="login-heading">
+                <span class="section-kicker">BEM-VINDO DE VOLTA</span>
+
+                <h1>
+                    Entre no seu<br />
+                    <span>universo gamer.</span>
+                </h1>
+
+                <p>
+                    Acesse sua conta e continue sua jornada
+                    rumo ao próximo nível.
+                </p>
+            </div>
+
+            <form class="login-form" #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+
+                    <div class="input-wrapper">
+                        <span class="input-icon" aria-hidden="true">@</span>
+
+                        <input id="email" type="email" name="email" [(ngModel)]="email" #emailField="ngModel"
+                            placeholder="voce@exemplo.com" autocomplete="email" required email
+                            [class.input-error]="emailField.invalid && emailField.touched" />
+                    </div>
+
+                    <small class="field-error" *ngIf="emailField.invalid && emailField.touched">
+                        Informe um endereço de e-mail válido.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <div class="label-row">
+                        <label for="password">Senha</label>
+
+                        <a routerLink="/recuperar-senha" class="forgot-link">
+                            Esqueceu a senha?
+                        </a>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <span class="input-icon lock-icon" aria-hidden="true">
+                            &#9673;
+                        </span>
+
+                        <input id="password" [type]="showPassword ? 'text' : 'password'" name="password"
+                            [(ngModel)]="password" #passwordField="ngModel" placeholder="Digite sua senha"
+                            autocomplete="current-password" required minlength="6"
+                            [class.input-error]="passwordField.invalid && passwordField.touched" />
+
+                        <button class="password-toggle" type="button" (click)="togglePassword()"
+                            [attr.aria-label]="showPassword ? 'Ocultar senha' : 'Mostrar senha'"
+                            [attr.aria-pressed]="showPassword">
+                            {{ showPassword ? 'Ocultar' : 'Mostrar' }}
+                        </button>
+                    </div>
+
+                    <small class="field-error" *ngIf="passwordField.invalid && passwordField.touched">
+                        A senha deve ter pelo menos 6 caracteres.
+                    </small>
+                </div>
+
+                <div class="form-options">
+                    <label class="remember-option">
+                        <input type="checkbox" name="rememberMe" [(ngModel)]="rememberMe" />
+                        <span class="custom-checkbox"></span>
+                        <span>Lembrar de mim</span>
+                    </label>
+                </div>
+
+                <div class="login-error" *ngIf="errorMessage" role="alert">
+                    <span>!</span>
+                    {{ errorMessage }}
+                </div>
+
+                <button type="submit" class="login-button" [disabled]="isLoading">
+                    <span *ngIf="!isLoading">
+                        Entrar na minha conta <span class="button-arrow">↗</span>
+                    </span>
+
+                    <span *ngIf="isLoading" class="loading-content">
+                        <span class="spinner"></span>
+                        Verificando acesso...
+                    </span>
+                </button>
+
+                <div class="form-divider">
+                    <span></span>
+                    <small>NOVO POR AQUI?</small>
+                    <span></span>
+                </div>
+
+                <a routerLink="/cadastro" class="register-button">
+                    Criar minha conta
+                </a>
+            </form>
+
+            <div class="login-security">
+                <span class="security-icon">&#9673;</span>
+                <span>Seu acesso deve ser protegido e seguro.</span>
+            </div>
+        </section>
+
+        <aside class="side-content">
+            <span class="side-kicker">
+                <span class="status-dot"></span>
+                YOUR GAME. YOUR RULES.
+            </span>
+
+            <h2>
+                Seu setup.<br />
+                Suas regras.<br />
+                <span>Seu próximo nível.</span>
+            </h2>
+
+            <p>
+                Entre para acompanhar seus pedidos, salvar seus
+                produtos favoritos e encontrar o equipamento ideal
+                para sua gameplay.
+            </p>
+
+            <div class="side-features">
+                <div class="feature-item">
+                    <span class="feature-icon">01</span>
+                    <div>
+                        <strong>Seus produtos favoritos</strong>
+                        <small>Encontre tudo o que salvou.</small>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">02</span>
+                    <div>
+                        <strong>Acompanhe seus pedidos</strong>
+                        <small>Seus upgrades em um só lugar.</small>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">03</span>
+                    <div>
+                        <strong>Uma experiência personalizada</strong>
+                        <small>Uma loja feita para o seu setup.</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="decorative-mark" aria-hidden="true">
+                <span>T</span>
+                <span class="mark-line"></span>
+                <span class="mark-caption">TECHPEC / GAMING</span>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="login-footer">
+        <span>© {{ currentYear }} TechPec. Todos os direitos reservados.</span>
+        <span>FEITO PARA QUEM VIVE O GAME. <strong>GG!</strong></span>
+    </footer>
+</div>

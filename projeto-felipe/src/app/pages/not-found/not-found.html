@@ -1,0 +1,44 @@
+<div class="not-found">
+    <div class="background-glow glow-1"></div>
+    <div class="background-glow glow-2"></div>
+
+    <main class="content">
+        <div class="brand">
+            <span class="brand-icon">✦</span>
+            <span>PAGE NOT FOUND</span>
+        </div>
+
+        <div class="error-code">
+            <span>4</span>
+            <div class="planet">
+                <div class="planet-ring"></div>
+                <div class="planet-core">?</div>
+            </div>
+            <span>4</span>
+        </div>
+
+        <h1>Ops! Você se perdeu?</h1>
+
+        <p class="description">
+            Parece que você chegou a um lugar desconhecido.
+            A página que procura não existe ou foi movida.
+        </p>
+
+        <div class="actions">
+            <button class="home-button" (click)="goHome()">
+                <span>⌂</span>
+                Voltar para o início
+                <span class="arrow">→</span>
+            </button>
+
+            <button class="back-button" (click)="goBack()">
+                Voltar à página anterior
+            </button>
+        </div>
+
+        <div class="footer">
+            <span class="status-dot"></span>
+            ERROR CODE: 404
+        </div>
+    </main>
+</div>
