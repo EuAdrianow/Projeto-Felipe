@@ -3,6 +3,7 @@ import { Home } from './pages/home/home';
 import { Contato } from './pages/contato/contato';
 import { NotFound } from './pages/not-found/not-found';
 import { Login } from './pages/login/login';
+import { Ofertas } from './pages/ofertas/ofertas';
 
 export const routes: Routes = [
 {
@@ -16,6 +17,10 @@ export const routes: Routes = [
 {
     path: 'login',
     component: Login
+},
+{
+    path: 'ofertas',
+    component: Ofertas
 },
 {
     path: '**',

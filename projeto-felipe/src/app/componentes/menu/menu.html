@@ -1,9 +1,25 @@
-<nav class="navigation" aria-label="Categorias">
-    <a href="#categorias">☰ Todas as categorias</a>
-    <a href="#ofertas">Ofertas</a>
-    <a href="#produtos">Hardware</a>
-    <a href="#produtos">Periféricos</a>
-    <a href="#produtos">Computadores</a>
-    <a href="#produtos">Monitores</a>
-    <a href="#beneficios">Atendimento</a>
+<nav class="site-menu" aria-label="Navegação principal">
+    <div class="menu-container">
+
+        <a class="menu-link" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            Início
+        </a>
+
+        <a class="menu-link" routerLink="/categorias" fragment="categorias">
+            Categorias
+        </a>
+
+        <a class="menu-link" routerLink="ofertas" fragment="ofertas">
+            Ofertas
+        </a>
+
+        <a class="menu-link" routerLink="/produtos" fragment="produtos">
+            Produtos
+        </a>
+
+        <a class="menu-link" routerLink="/contato" routerLinkActive="active">
+            Contato
+        </a>
+
+    </div>
 </nav>

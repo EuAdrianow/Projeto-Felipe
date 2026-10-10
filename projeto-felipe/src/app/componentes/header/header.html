@@ -1,35 +1,33 @@
-<div class="top-strip">
-    <span>🚀 Performance para quem joga sério</span>
-    <span>Ofertas especiais todos os dias</span>
-</div>
+<header class="site-header">
+    <div class="header-container">
 
-<header class="header">
-    <a class="logo" routerLink="/" aria-label="TechPec - início">
-        <span class="logo-icon">T</span>
-        <span>Tech<span class="logo-accent">Pec</span></span>
-    </a>
+        <a class="logo" routerLink="/home" aria-label="TechPec - início">
+            <span class="logo-icon">T</span>
+            <span class="logo-name">Tech<span>Pec</span></span>
+        </a>
 
-    <form class="search" (ngSubmit)="onSearch($event)">
-        <input type="search" placeholder="Busque produtos, marcas e categorias..." aria-label="Buscar produtos"
-            [(ngModel)]="searchTerm" name="search" />
-        <button type="submit" aria-label="Pesquisar">⌕</button>
-    </form>
+        <span class="header-message">
+            Tecnologia para evoluir seu setup.
+        </span>
 
-    <div class="header-actions">
-        <button class="header-action" type="button" routerLink="/login">
-            <span class="action-icon">♙</span>
-            <span>
-                <small>Olá, gamer</small>
-                <strong>Minha conta</strong>
-            </span>
-        </button>
+        <div class="header-actions">
+            <a class="header-action account-link" routerLink="/login">
+                <span class="action-icon">♙</span>
+                <span class="action-text">
+                    <small>Bem-vindo</small>
+                    <strong>Minha conta</strong>
+                </span>
+            </a>
 
-        <button class="header-action cart-button" type="button" (click)="openCart()" aria-label="Ver carrinho">
-            <span class="action-icon">🛒</span>
-            <span>
-                <small>Meu</small>
-                <strong>Carrinho</strong>
-            </span>
-        </button>
+            <a class="header-action cart-link" routerLink="/home" fragment="produtos"
+                aria-label="Ver produtos para adicionar ao carrinho">
+                <span class="action-icon">🛒</span>
+                <span class="action-text">
+                    <small>Explore</small>
+                    <strong>Produtos</strong>
+                </span>
+            </a>
+        </div>
+
     </div>
 </header>

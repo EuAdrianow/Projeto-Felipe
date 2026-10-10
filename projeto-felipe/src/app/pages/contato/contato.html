@@ -1,1 +1,187 @@
-<p>contato works!</p>
+<div class="contact-page">
+
+    <app-header></app-header>
+    <app-menu></app-menu>
+
+    <main class="contact-main">
+
+        <section class="contact-hero">
+            <div class="contact-hero-content">
+                <span class="section-kicker">ESTAMOS AQUI PARA AJUDAR</span>
+
+                <h1>
+                    Vamos conversar<span>.</span>
+                </h1>
+
+                <p>
+                    Tem dúvidas sobre um produto, precisa de ajuda com seu pedido
+                    ou quer saber mais sobre a TechPec? Entre em contato com a gente.
+                </p>
+
+                <div class="contact-status">
+                    <span class="status-dot"></span>
+                    Atendimento ao cliente
+                </div>
+            </div>
+
+            <div class="contact-hero-decoration" aria-hidden="true">
+                <span class="decoration-symbol">✦</span>
+                <span class="decoration-text">TECHPEC<br />SUPPORT CENTER</span>
+            </div>
+        </section>
+
+        <section class="contact-content">
+
+            <div class="contact-info">
+
+                <span class="section-kicker">FALE COM A TECHPEC</span>
+                <h2>Como podemos ajudar?</h2>
+
+                <p class="contact-description">
+                    Escolha o canal de atendimento mais adequado para sua necessidade.
+                </p>
+
+                <div class="info-card">
+                    <span class="info-icon">✉</span>
+
+                    <div>
+                        <h3>E-mail</h3>
+                        <p>Envie sua dúvida para nossa equipe.</p>
+                        <a href="mailto:contato@techpec.com.br">
+                            contato@techpec.com.br
+                        </a>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <span class="info-icon">◷</span>
+
+                    <div>
+                        <h3>Horário de atendimento</h3>
+                        <p>Segunda a sexta-feira</p>
+                        <span>Em horário comercial</span>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <span class="info-icon">🛡</span>
+
+                    <div>
+                        <h3>Suporte especializado</h3>
+                        <p>
+                            Orientações sobre produtos, hardware e equipamentos gamer.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="contact-note">
+                    <span>ⓘ</span>
+                    <p>
+                        Para agilizar o atendimento, descreva sua dúvida com o máximo
+                        de detalhes possível.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="contact-form-card">
+
+                <div class="form-heading">
+                    <span class="section-kicker">ENVIE SUA MENSAGEM</span>
+                    <h2>Entre em contato</h2>
+                    <p>Os campos marcados com * são obrigatórios.</p>
+                </div>
+
+                <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" (input)="clearMessages()" novalidate>
+
+                    <div class="form-group">
+                        <label for="contact-name">Nome completo *</label>
+
+                        <input id="contact-name" type="text" name="name" [(ngModel)]="name" #nameField="ngModel"
+                            placeholder="Como podemos chamar você?" autocomplete="name" required minlength="2"
+                            [class.input-error]="nameField.invalid && nameField.touched" />
+
+                        <small class="field-error" *ngIf="nameField.invalid && nameField.touched">
+                            Informe seu nome com pelo menos 2 caracteres.
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-email">E-mail *</label>
+
+                        <input id="contact-email" type="email" name="email" [(ngModel)]="email" #emailField="ngModel"
+                            placeholder="voce@exemplo.com" autocomplete="email" required email
+                            [class.input-error]="emailField.invalid && emailField.touched" />
+
+                        <small class="field-error" *ngIf="emailField.invalid && emailField.touched">
+                            Informe um endereço de e-mail válido.
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-subject">Assunto *</label>
+
+                        <select id="contact-subject" name="subject" [(ngModel)]="subject" #subjectField="ngModel"
+                            required [class.input-error]="subjectField.invalid && subjectField.touched">
+                            <option value="" disabled>Selecione um assunto</option>
+                            <option value="Produtos">Dúvidas sobre produtos</option>
+                            <option value="Pedidos">Pedidos e entregas</option>
+                            <option value="Pagamento">Pagamentos</option>
+                            <option value="Garantia">Garantia e assistência</option>
+                            <option value="Trocas">Trocas e devoluções</option>
+                            <option value="Outros">Outros assuntos</option>
+                        </select>
+
+                        <small class="field-error" *ngIf="subjectField.invalid && subjectField.touched">
+                            Selecione um assunto.
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-message">Mensagem *</label>
+
+                        <textarea id="contact-message" name="message" [(ngModel)]="message" #messageField="ngModel"
+                            placeholder="Conte como podemos ajudar..." rows="5" required minlength="10" maxlength="2000"
+                            [class.input-error]="messageField.invalid && messageField.touched"></textarea>
+
+                        <div class="textarea-footer">
+                            <small class="field-error" *ngIf="messageField.invalid && messageField.touched">
+                                Escreva uma mensagem com pelo menos 10 caracteres.
+                            </small>
+
+                            <small class="character-count">
+                                {{ message.length }}/2000
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="feedback success-message" *ngIf="successMessage" role="status">
+                        <span>✓</span>
+                        <p>{{ successMessage }}</p>
+                    </div>
+
+                    <div class="feedback error-message" *ngIf="errorMessage" role="alert">
+                        <span>!</span>
+                        <p>{{ errorMessage }}</p>
+                    </div>
+
+                    <button class="submit-button" type="submit" [disabled]="isSubmitting">
+                        <span>{{ isSubmitting ? 'Processando...' : 'Enviar mensagem' }}</span>
+                        <span aria-hidden="true">↗</span>
+                    </button>
+
+                    <p class="form-disclaimer">
+                        Este formulário é demonstrativo e ainda não envia dados a um servidor.
+                    </p>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <app-footer></app-footer>
+
+</div>

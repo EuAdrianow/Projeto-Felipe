@@ -1,0 +1,227 @@
+<div class="offers-page">
+
+    <app-header></app-header>
+    <app-menu></app-menu>
+
+    <main>
+
+        <!-- Banner principal -->
+        <section class="offers-hero">
+            <div class="hero-content">
+                <span class="eyebrow">
+                    <span class="live-dot"></span>
+                    OFERTAS ESPECIAIS TECHPEC
+                </span>
+
+                <h1>
+                    Seu upgrade começa
+                    <span>aqui.</span>
+                </h1>
+
+                <p>
+                    Equipamentos selecionados para elevar seu setup,
+                    com preços especiais para você jogar em outro nível.
+                </p>
+
+                <a class="hero-button" href="#lista-ofertas">
+                    Explorar ofertas <span>↗</span>
+                </a>
+
+                <div class="hero-benefits">
+                    <span>✓ Produtos selecionados</span>
+                    <span>✓ Ofertas por categoria</span>
+                    <span>✓ Pagamento facilitado</span>
+                </div>
+            </div>
+
+            <div class="hero-decoration" aria-hidden="true">
+                <div class="decoration-ring ring-one"></div>
+                <div class="decoration-ring ring-two"></div>
+
+                <div class="discount-orb">
+                    <span>OFERTAS</span>
+                    <strong>GG!</strong>
+                    <small>UPGRADE ATIVADO</small>
+                </div>
+
+                <span class="decoration-plus plus-one">+</span>
+                <span class="decoration-plus plus-two">✦</span>
+                <span class="decoration-code">TECHPEC / DEALS</span>
+            </div>
+        </section>
+
+        <!-- Faixa informativa -->
+        <section class="deal-strip">
+            <div>
+                <span class="deal-icon">⚡</span>
+                <span>
+                    <strong>Preços especiais</strong>
+                    <small>Mais performance pelo seu dinheiro</small>
+                </span>
+            </div>
+
+            <div>
+                <span class="deal-icon">🎮</span>
+                <span>
+                    <strong>Seu setup, sua estratégia</strong>
+                    <small>Encontre seu próximo upgrade</small>
+                </span>
+            </div>
+
+            <div>
+                <span class="deal-icon">🛡️</span>
+                <span>
+                    <strong>Compra segura</strong>
+                    <small>Mais tranquilidade na sua compra</small>
+                </span>
+            </div>
+        </section>
+
+        <!-- Lista de ofertas -->
+        <section class="offers-section" id="lista-ofertas">
+
+            <div class="section-heading">
+                <div>
+                    <span class="section-kicker">OPORTUNIDADES PARA SEU SETUP</span>
+                    <h2>
+                        Ofertas da <span>TechPec</span>
+                    </h2>
+                    <p>Escolha seu equipamento e prepare o próximo upgrade.</p>
+                </div>
+
+                <div class="offer-summary">
+                    <strong>{{ filteredOffers.length }}</strong>
+                    <span>ofertas encontradas</span>
+                </div>
+            </div>
+
+            <!-- Filtros -->
+            <div class="filter-panel">
+
+                <div class="category-filters">
+                    <button *ngFor="let category of categories" type="button" class="filter-chip"
+                        [class.active]="selectedCategory === category"
+                        [attr.aria-pressed]="selectedCategory === category" (click)="selectCategory(category)">
+                        {{ category }}
+                    </button>
+                </div>
+
+                <label class="sort-control">
+                    <span>Ordenar por</span>
+
+                    <select [(ngModel)]="sortOrder" name="sortOrder">
+                        <option value="discount">Maior desconto</option>
+                        <option value="price-asc">Menor preço</option>
+                        <option value="price-desc">Maior preço</option>
+                        <option value="name">Nome</option>
+                    </select>
+                </label>
+
+            </div>
+
+            <!-- Produtos -->
+            <div class="offers-grid" *ngIf="filteredOffers.length > 0; else emptyOffers">
+
+                <article class="offer-card" *ngFor="let offer of filteredOffers">
+
+                    <div class="offer-image">
+                        <span class="discount-badge">
+                            -{{ getDiscount(offer) }}%
+                        </span>
+
+                        <span class="offer-icon" aria-hidden="true">
+                            {{ offer.icon }}
+                        </span>
+
+                        <span class="image-caption">TECHPEC DEAL</span>
+                    </div>
+
+                    <div class="offer-info">
+
+                        <span class="product-category">
+                            {{ offer.category }}
+                        </span>
+
+                        <h3>{{ offer.name }}</h3>
+
+                        <div class="rating">
+                            <span aria-label="5 estrelas">★★★★★</span>
+                            <small>({{ offer.reviews }} avaliações)</small>
+                        </div>
+
+                        <div class="price-area">
+                            <span class="old-price">
+                                {{ offer.oldPrice | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+                            </span>
+
+                            <div class="current-price">
+                                {{ offer.price | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+                            </div>
+
+                            <span class="pix-label">Preço promocional</span>
+
+                            <small class="installments" *ngIf="offer.installments">
+                                ou até 10x de
+                                {{ (offer.price / 10) | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+                            </small>
+
+                            <small class="installments" *ngIf="!offer.installments">
+                                Consulte as condições de pagamento
+                            </small>
+                        </div>
+
+                        <button class="add-cart-button" type="button" (click)="addToCart(offer)">
+                            <span>🛒</span>
+                            Adicionar ao carrinho
+                        </button>
+
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- Nenhuma oferta -->
+            <ng-template #emptyOffers>
+                <div class="empty-state">
+                    <span class="empty-icon">⌕</span>
+                    <h3>Nenhuma oferta encontrada</h3>
+                    <p>Não encontramos produtos nesta categoria.</p>
+
+                    <button type="button" class="hero-button" (click)="clearFilters()">
+                        Ver todas as ofertas
+                    </button>
+                </div>
+            </ng-template>
+
+        </section>
+
+        <!-- Banner final -->
+        <section class="upgrade-banner">
+            <div>
+                <span class="section-kicker">PRONTO PARA SUBIR DE NÍVEL?</span>
+                <h2>
+                    Seu próximo setup começa
+                    <span>com uma boa escolha.</span>
+                </h2>
+                <p>
+                    Explore os produtos da loja e encontre o equipamento
+                    ideal para sua próxima evolução.
+                </p>
+            </div>
+
+            <a routerLink="/home" class="hero-button">
+                Explorar a loja <span>↗</span>
+            </a>
+        </section>
+
+    </main>
+
+    <app-footer></app-footer>
+
+    <!-- Notificação -->
+    <div class="toast" *ngIf="toastMessage" role="status">
+        <span>✓</span>
+        {{ toastMessage }}
+    </div>
+
+</div>

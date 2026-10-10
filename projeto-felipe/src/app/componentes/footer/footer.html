@@ -1,37 +1,53 @@
-<footer class="footer">
-    <div class="footer-main">
+<footer class="site-footer">
+
+    <div class="footer-container">
+
         <div class="footer-brand">
-            <a class="logo" routerLink="/">
+            <a class="logo" routerLink="/home">
                 <span class="logo-icon">T</span>
-                <span>Tech<span class="logo-accent">Pec</span></span>
+                <span class="logo-name">Tech<span>Pec</span></span>
             </a>
-            <p>Seu universo gamer.<br />Sua próxima evolução.</p>
+
+            <p>
+                Tecnologia para evoluir seu setup.
+                <br />
+                Seu universo gamer começa aqui.
+            </p>
         </div>
 
-        <div>
-            <h4>Institucional</h4>
-            <a routerLink="/">Sobre a TechPec</a>
-            <a href="#beneficios">Atendimento</a>
-            <a href="#beneficios">Política de privacidade</a>
+        <div class="footer-column">
+            <h3>Navegação</h3>
+            <a routerLink="/home">Início</a>
+            <a routerLink="/home" fragment="categorias">Categorias</a>
+            <a routerLink="/home" fragment="ofertas">Ofertas</a>
+            <a routerLink="/home" fragment="produtos">Produtos</a>
         </div>
 
-        <div>
-            <h4>Departamentos</h4>
-            <a href="#categorias">Hardware</a>
-            <a href="#categorias">Periféricos</a>
-            <a href="#categorias">Monitores</a>
+        <div class="footer-column">
+            <h3>Atendimento</h3>
+            <a routerLink="/contato">Fale conosco</a>
+            <a routerLink="/login">Minha conta</a>
+            <span>contato@techpec.com.br</span>
         </div>
 
-        <div>
-            <h4>Fale com a gente</h4>
-            <p>Atendimento ao cliente</p>
-            <p>contato@techpec.com.br</p>
-            <p>Segunda a sexta, em horário comercial</p>
+        <div class="footer-column">
+            <h3>TechPec</h3>
+            <p>Qualidade, tecnologia e desempenho para o seu setup.</p>
+            <span>Feito para quem vive o game.</span>
         </div>
+
     </div>
 
     <div class="footer-bottom">
-        <span>© {{ currentYear }} TechPec. Todos os direitos reservados.</span>
-        <span>Feito para quem vive o game. <span class="logo-accent">GG!</span></span>
+        <div class="footer-bottom-container">
+            <span>
+                © {{ currentYear }} TechPec. Todos os direitos reservados.
+            </span>
+
+            <span class="footer-signature">
+                Seu próximo nível começa aqui.
+            </span>
+        </div>
     </div>
+
 </footer>

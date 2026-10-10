@@ -1,26 +1,11 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [RouterLink],
   templateUrl: './header.html',
-  styleUrl: './header.css'
+  styleUrls: ['./header.css']
 })
-export class Header {
-  searchTerm = '';
-
-  @Output() search = new EventEmitter<string>();
-  @Output() cartClicked = new EventEmitter<void>();
-
-  onSearch(event: Event): void {
-    event.preventDefault();
-    this.search.emit(this.searchTerm.trim());
-  }
-
-  openCart(): void {
-    this.cartClicked.emit();
-  }
-}
+export class Header {}
