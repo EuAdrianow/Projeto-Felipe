@@ -1,0 +1,44 @@
+<main class="page-shell">
+  <div class="breadcrumb"><a routerLink="/">TechPec</a> / {{ titulo }}</div>
+
+  <section class="hero">
+    <p class="eyebrow">{{ chamada }}</p>
+    <h1 [innerHTML]="tituloHtml"></h1>
+    <p class="intro">{{ descricao }}</p>
+  </section>
+
+  <div class="toolbar">
+    <label class="search">
+      <input type="search" placeholder="Buscar por nome, marca ou especificação..."
+        [(ngModel)]="busca" aria-label="Buscar produtos">
+    </label>
+    <select [(ngModel)]="ordenacao" aria-label="Ordenar produtos">
+      <option value="relevancia">Mais relevantes</option>
+      <option value="menor-preco">Menor preço</option>
+      <option value="maior-preco">Maior preço</option>
+      <option value="nome">Nome: A–Z</option>
+    </select>
+  </div>
+
+  <nav class="chips" *ngIf="categorias.length > 1" aria-label="Filtrar categorias">
+    <button class="chip" *ngFor="let categoria of categorias"
+      [class.active]="categoriaAtiva === categoria" (click)="categoriaAtiva = categoria">
+      {{ categoria }}
+    </button>
+  </nav>
+
+  <div class="section-heading">
+    <h2>{{ subtitulo }}</h2>
+    <span class="result-count">{{ produtosFiltrados.length }} produto(s)</span>
+  </div>
+
+  <section class="product-grid" aria-label="Lista de produtos">
+    <app-cards [produtos]="produtosFiltrados" (adicionar)="adicionarAoCarrinho($event)"></app-cards>
+    <div class="empty" *ngIf="produtosFiltrados.length === 0">
+      <h3>Nenhum produto encontrado</h3>
+      <p>Tente mudar a busca ou selecionar outra categoria.</p>
+    </div>
+  </section>
+
+  <div class="notice" role="status" *ngIf="mensagem">{{ mensagem }}</div>
+</main>
