@@ -26,10 +26,10 @@ export class Monitores {
   mensagem = '';
 
   produtos: Produto[] = [
-      { id: 31, nome: 'Monitor AOC Gaming 27" 300hz', categoria: 'Full HD', descricao: 'Alta taxa de atualização para jogos competitivos.', preco: 899, precoAnterior: 999, imagem: 'assets/images/monitor-aoc-27-300.png', selo: 'Oferta', especificacoes: ['24 polegadas', '180 Hz'], avaliacao: 4.8, estoque: true },
-      { id: 32, nome: 'Monitor OLED LG UltraGear 27" 240hz', categoria: 'QHD', descricao: 'Mais espaço e definição para jogar e trabalhar.', preco: 1599, precoAnterior: 1799, imagem: 'assets/images/monitor-lgultragear-27-240.png', selo: '', especificacoes: ['27 polegadas', '165 Hz'], avaliacao: 4.7, estoque: true },
-      { id: 33, nome: 'Monitor Spectra 32" Curvo', categoria: 'QHD', descricao: 'Tela curva para uma experiência mais envolvente.', preco: 2199, precoAnterior: 2399, imagem: 'assets/images/monitor-32-curvo.png', selo: 'Imersão', especificacoes: ['32 polegadas', 'Curvo'], avaliacao: 4.6, estoque: true },
-      { id: 34, nome: 'Monitor WideFlow 34"', categoria: 'Ultrawide', descricao: 'Campo de visão amplo para jogos e multitarefa.', preco: 2899, precoAnterior: 3199, imagem: 'assets/images/monitor-ultrawide.png', selo: '', especificacoes: ['Ultrawide', 'Alta resolução'], avaliacao: 4.8, estoque: true }
+      { id: 31, nome: 'Monitor AOC Gaming 27" 300hz', categoria: 'Full HD', descricao: 'Alta taxa de atualização para jogos competitivos.', preco: 899, precoAnterior: 999, imagem: 'https://bucket-s3-projeto-felipe.s3.us-east-2.amazonaws.com/assets/images/monitor-aoc-27-300.png', selo: 'Oferta', especificacoes: ['24 polegadas', '180 Hz'], avaliacao: 4.8, estoque: true },
+      { id: 32, nome: 'Monitor OLED LG UltraGear 27" 240hz', categoria: 'QHD', descricao: 'Mais espaço e definição para jogar e trabalhar.', preco: 1599, precoAnterior: 1799, imagem: 'https://bucket-s3-projeto-felipe.s3.us-east-2.amazonaws.com/assets/images/monitor-lgultragear-27-240.png', selo: '', especificacoes: ['27 polegadas', '165 Hz'], avaliacao: 4.7, estoque: true },
+      { id: 33, nome: 'Monitor Spectra 32" Curvo', categoria: 'QHD', descricao: 'Tela curva para uma experiência mais envolvente.', preco: 2199, precoAnterior: 2399, imagem: 'https://bucket-s3-projeto-felipe.s3.us-east-2.amazonaws.com/assets/images/monitor-32-curvo.png', selo: 'Imersão', especificacoes: ['32 polegadas', 'Curvo'], avaliacao: 4.6, estoque: true },
+      { id: 34, nome: 'Monitor WideFlow 34"', categoria: 'Ultrawide', descricao: 'Campo de visão amplo para jogos e multitarefa.', preco: 2899, precoAnterior: 3199, imagem: 'https://bucket-s3-projeto-felipe.s3.us-east-2.amazonaws.com/assets/images/monitor-ultrawide.png', selo: '', especificacoes: ['Ultrawide', 'Alta resolução'], avaliacao: 4.8, estoque: true }
   ];
 
   get produtosFiltrados(): Produto[] {
