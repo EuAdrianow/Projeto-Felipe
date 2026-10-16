@@ -1,0 +1,166 @@
+<div class="login-page">
+  <div class="background-effects">
+    <div class="glow glow-purple"></div>
+    <div class="glow glow-cyan"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <header class="login-header">
+    <a class="logo" routerLink="/" aria-label="TechPec - início">
+      <span class="logo-icon">T</span>
+      <span>Tech<span class="logo-accent">Pec</span></span>
+    </a>
+
+    <a routerLink="/login" class="back-link">
+      <span>←</span> Voltar ao login
+    </a>
+  </header>
+
+  <main class="login-main">
+    <section class="login-card">
+      <div class="login-brand">
+        <div class="brand-symbol">T</div>
+        <span class="brand-status">
+          <span class="status-dot"></span>
+          ACCOUNT RECOVERY
+        </span>
+      </div>
+
+      <div class="login-heading">
+        <span class="section-kicker">RECUPERAR SENHA</span>
+
+        <h1>
+          Redefina o acesso<br />
+          <span>à sua conta.</span>
+        </h1>
+
+        <p>
+          Informe o e-mail cadastrado. Se existir uma conta com esse endereço,
+          enviaremos as instruções para criar uma nova senha.
+        </p>
+      </div>
+
+      @if (!enviado) {
+        <form class="login-form" #recoveryForm="ngForm" (ngSubmit)="onSubmit(recoveryForm)">
+          <div class="form-group">
+            <label for="email">E-mail</label>
+
+            <div class="input-wrapper">
+              <span class="input-icon" aria-hidden="true">@</span>
+
+              <input
+                id="email"
+                type="email"
+                name="email"
+                [(ngModel)]="email"
+                #emailField="ngModel"
+                placeholder="voce@exemplo.com"
+                autocomplete="email"
+                required
+                email
+                [class.input-error]="emailField.invalid && emailField.touched"
+              />
+            </div>
+
+            <small class="field-error" *ngIf="emailField.invalid && emailField.touched">
+              Informe um endereço de e-mail válido.
+            </small>
+          </div>
+
+          <p class="info-tip">
+            Por segurança, não confirmamos se o e-mail está cadastrado.
+          </p>
+
+          <div class="login-error" *ngIf="errorMessage" role="alert">
+            <span>!</span>
+            {{ errorMessage }}
+          </div>
+
+          <button type="submit" class="login-button" [disabled]="isLoading">
+            @if (isLoading) {
+              Enviando...
+            } @else {
+              Enviar link de recuperação <span class="button-arrow">↗</span>
+            }
+          </button>
+
+          <a routerLink="/login" class="register-button">Já lembrou a senha? Entrar</a>
+        </form>
+      } @else {
+        <div class="success-box" role="status">
+          <h2>Verifique seu e-mail</h2>
+          <p>
+            Se existir uma conta para
+            <strong>{{ email }}</strong>,
+            você receberá um link para redefinir a senha.
+          </p>
+          <p>
+            Não encontrou a mensagem? Confira a caixa de spam ou tente novamente em alguns minutos.
+          </p>
+
+          <div class="success-actions">
+            <a routerLink="/login" class="login-button" style="text-align: center; text-decoration: none;">
+              Voltar ao login <span class="button-arrow">↗</span>
+            </a>
+            <button type="button" class="register-button" (click)="tentarOutroEmail()">
+              Usar outro e-mail
+            </button>
+          </div>
+        </div>
+      }
+
+      <div class="login-security">
+        <span class="security-icon">&#9673;</span>
+        <span>Nunca compartilhe o link de recuperação com outras pessoas.</span>
+      </div>
+    </section>
+
+    <aside class="side-content">
+      <span class="side-kicker">
+        <span class="status-dot"></span>
+        TECHPEC SECURITY
+      </span>
+
+      <h2>
+        Seu setup continua<br />
+        <span>protegido.</span>
+      </h2>
+
+      <p>
+        A recuperação de senha ajuda você a voltar ao jogo sem perder o acesso
+        à sua conta e aos seus pedidos.
+      </p>
+
+      <div class="side-features">
+        <div class="feature-item">
+          <span class="feature-icon">01</span>
+          <div>
+            <strong>Processo seguro</strong>
+            <small>Link temporário e de uso único.</small>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <span class="feature-icon">02</span>
+          <div>
+            <strong>Rápido e simples</strong>
+            <small>Poucos passos para voltar a jogar.</small>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <span class="feature-icon">03</span>
+          <div>
+            <strong>Conta protegida</strong>
+            <small>Seus dados ficam só com você.</small>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="login-footer">
+    <span>© {{ currentYear }} TechPec. Todos os direitos reservados.</span>
+    <span>RECUPERAÇÃO DE ACESSO. <strong>GG!</strong></span>
+  </footer>
+</div>

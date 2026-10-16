@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { CardsComponent, Produto } from '../../componentes/cards/cards';
+import { Cards, Produto } from '../../componentes/cards/cards';
 import { Header } from '../../componentes/header/header';
 import { Menu } from '../../componentes/menu/menu';
 import { Footer } from '../../componentes/footer/footer';
+import { CarrinhoService } from '../../services/carrinhoservice/carrinhoservice';
 
 interface CategoriaAcesso {
   nome: string;
@@ -22,15 +23,16 @@ interface CategoriaAcesso {
     CommonModule,
     FormsModule,
     RouterLink,
-    CardsComponent,
+    Cards,
     Header,
     Menu,
-    Footer
+    Footer,
   ],
   templateUrl: './produtos.html',
   styleUrls: ['./produtos.css']
 })
 export class Produtos {
+  private readonly carrinho = inject(CarrinhoService);
   titulo = 'Produtos';
   tituloHtml = 'Tudo para o seu <span>setup gamer.</span>';
   chamada = 'SEU PRÓXIMO UPGRADE COMEÇA AQUI';
@@ -97,7 +99,7 @@ export class Produtos {
       descricao: 'Ray tracing e DLSS para jogar com fluidez.',
       preco: 2199,
       precoAnterior: 2499,
-      imagem: 'https://placehold.co/600x420/21152d/cb9aff?text=RTX+4060',
+      imagem: 'assets/images/rtx-4060.png',
       selo: 'Oferta',
       especificacoes: ['8 GB GDDR6', 'PCIe 4.0'],
       avaliacao: 4.8,
@@ -110,7 +112,7 @@ export class Produtos {
       descricao: 'Desempenho equilibrado para jogos e multitarefa.',
       preco: 799,
       precoAnterior: 899,
-      imagem: 'https://placehold.co/600x420/21152d/cb9aff?text=Ryzen+5+5600',
+      imagem: 'assets/images/ryzen-5-5600.png',
       selo: 'Mais vendido',
       especificacoes: ['6 núcleos', 'Socket AM4'],
       avaliacao: 4.9,
@@ -123,7 +125,7 @@ export class Produtos {
       descricao: 'PC gamer para começar sua próxima jornada.',
       preco: 3299,
       precoAnterior: 3599,
-      imagem: 'https://placehold.co/600x420/21152d/cb9aff?text=Arena+Starter',
+      imagem: 'assets/images/pc-entrada-1.png',
       selo: 'Setup recomendado',
       especificacoes: ['16 GB RAM', 'SSD 1 TB'],
       avaliacao: 4.7,
@@ -131,12 +133,12 @@ export class Produtos {
     },
     {
       id: 4,
-      nome: "Monitor Pulse 24'' 180 Hz",
+      nome: 'Monitor Lg UltraGear 27" 240Hz',
       categoria: 'Monitores',
       descricao: 'Movimentos suaves e resposta rápida.',
       preco: 899,
       precoAnterior: 999,
-      imagem: 'https://placehold.co/600x420/21152d/cb9aff?text=Monitor+180Hz',
+      imagem: 'assets/images/monitor-lgultragear-27-240.png',
       selo: 'Oferta',
       especificacoes: ['Full HD', '180 Hz'],
       avaliacao: 4.8,
@@ -144,12 +146,12 @@ export class Produtos {
     },
     {
       id: 5,
-      nome: 'Teclado mecânico RGB',
+      nome: 'Teclado Mecânico AJAZZ AK820 Pro',
       categoria: 'Periféricos',
       descricao: 'Precisão, iluminação e conforto para longas sessões.',
       preco: 249,
       precoAnterior: 299,
-      imagem: 'https://placehold.co/600x420/21152d/cb9aff?text=Teclado+RGB',
+      imagem: 'assets/images/ajazz-ak820-pro.png',
       selo: '',
       especificacoes: ['Switch mecânico', 'RGB'],
       avaliacao: 4.6,
@@ -157,12 +159,12 @@ export class Produtos {
     },
     {
       id: 6,
-      nome: 'Mouse gamer Spectrum',
+      nome: 'Mouse Attack Shark X11',
       categoria: 'Periféricos',
       descricao: 'Sensor preciso e formato ergonômico.',
       preco: 159,
       precoAnterior: 189,
-      imagem: 'https://placehold.co/600x420/21152d/cb9aff?text=Mouse+Gamer',
+      imagem: 'assets/images/mouse-gamer.webp',
       selo: '',
       especificacoes: ['Até 12.000 DPI', '6 botões'],
       avaliacao: 4.5,
@@ -170,12 +172,12 @@ export class Produtos {
     },
     {
       id: 7,
-      nome: 'SSD NVMe 1 TB',
+      nome: 'SSD NVMe M.2 1 TB',
       categoria: 'Armazenamento',
       descricao: 'Inicialização rápida e mais espaço para jogos.',
       preco: 429,
       precoAnterior: 499,
-      imagem: 'https://placehold.co/600x420/21152d/cb9aff?text=SSD+NVMe',
+      imagem: 'assets/images/ssd-nvme-1tb.png',
       selo: '',
       especificacoes: ['M.2 NVMe', '1 TB'],
       avaliacao: 4.7,
@@ -183,12 +185,12 @@ export class Produtos {
     },
     {
       id: 8,
-      nome: 'Headset Surround X',
+      nome: 'Headset Havit Fuxi H3',
       categoria: 'Periféricos',
       descricao: 'Áudio imersivo e microfone ajustável.',
       preco: 299,
       precoAnterior: 349,
-      imagem: 'https://placehold.co/600x420/21152d/cb9aff?text=Headset+Surround',
+      imagem: 'assets/images/havit-fuxi-h3.png',
       selo: '',
       especificacoes: ['Som surround', 'Microfone'],
       avaliacao: 4.4,
@@ -221,8 +223,9 @@ export class Produtos {
     return resultado;
   }
 
-  adicionarAoCarrinho(produto: Produto): void {
-    this.mensagem = `${produto.nome} foi adicionado ao carrinho (demonstração).`;
-    window.setTimeout(() => (this.mensagem = ''), 3000);
-  }
+adicionarAoCarrinho(produto: Produto): void {
+  this.carrinho.adicionar(produto);
+  this.mensagem = `${produto.nome} foi adicionado ao carrinho.`;
+  window.setTimeout(() => (this.mensagem = ''), 3000);
+}
 }

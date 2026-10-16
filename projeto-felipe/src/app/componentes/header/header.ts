@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CarrinhoService } from '../../services/carrinhoservice/carrinhoservice';
 
 @Component({
   selector: 'app-header',
@@ -8,4 +9,6 @@ import { RouterLink } from '@angular/router';
   templateUrl: './header.html',
   styleUrls: ['./header.css']
 })
-export class Header {}
+export class Header {
+  readonly carrinho = inject(CarrinhoService);
+}

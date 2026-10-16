@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Header } from '../../componentes/header/header';
 import { Menu } from '../../componentes/menu/menu';
 import { Footer } from '../../componentes/footer/footer';
+import { CarrinhoService } from '../../services/carrinhoservice/carrinhoservice';
 
 interface Category {
   name: string;
@@ -38,7 +39,9 @@ interface Product {
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 })
+
 export class Home {
+  private readonly carrinhoService = inject(CarrinhoService);
   currentYear = new Date().getFullYear();
 
   searchTerm = '';
@@ -89,9 +92,9 @@ export class Home {
     },
     {
       id: 2,
-      name: 'Processador AMD Ryzen 7',
+      name: 'Processador AMD Ryzen 7 5700x',
       category: 'Processadores',
-      image: 'assets/images/ryzen-7.png',
+      image: 'assets/images/ryzen-7-5700x.png',
       price: 1499.90,
       oldPrice: 1699.90,
       badge: 'MAIS VENDIDO',
@@ -101,9 +104,9 @@ export class Home {
     },
     {
       id: 3,
-      name: 'Teclado Mecânico RGB Gamer',
+      name: 'Teclado Magnético Aula WIN60HE',
       category: 'Periféricos',
-      image: 'assets/images/teclado-gamer.png',
+      image: 'assets/images/teclado-aula-win60he.png',
       price: 249.90,
       oldPrice: 329.90,
       badge: 'OFERTA',
@@ -113,9 +116,9 @@ export class Home {
     },
     {
       id: 4,
-      name: 'Monitor Gamer 27 polegadas 165Hz',
+      name: 'Monitor OLED LG UltraGear 27" 240hz',
       category: 'Monitores',
-      image: 'assets/images/monitor-gamer.png',
+      image: 'assets/images/monitor-lgultragear-27-240.png',
       price: 1099.90,
       reviews: 63,
       installments: true,
@@ -123,9 +126,9 @@ export class Home {
     },
     {
       id: 5,
-      name: 'Placa de Vídeo Gamer RTX',
+      name: 'Placa de Vídeo NVidia RTX 5070ti',
       category: 'Placas de vídeo',
-      image: 'assets/images/placa-video.png',
+      image: 'assets/images/rog-strix-5070ti.png',
       price: 2399.90,
       oldPrice: 2699.90,
       reviews: 51,
@@ -134,9 +137,9 @@ export class Home {
     },
     {
       id: 6,
-      name: 'Processador AMD Ryzen 5',
+      name: 'Processador AMD Ryzen 5 5600',
       category: 'Processadores',
-      image: 'assets/images/ryzen-5.png',
+      image: 'assets/images/ryzen-5-5600.png',
       price: 899.90,
       reviews: 87,
       installments: true,
@@ -144,9 +147,9 @@ export class Home {
     },
     {
       id: 7,
-      name: 'Mouse Gamer RGB',
+      name: 'Mouse Attack Shark X11',
       category: 'Periféricos',
-      image: 'assets/images/mouse-gamer.png',
+      image: 'assets/images/mouse-gamer.webp',
       price: 159.90,
       oldPrice: 199.90,
       reviews: 112,
@@ -155,9 +158,9 @@ export class Home {
     },
     {
       id: 8,
-      name: 'Monitor Gamer Full HD',
+      name: 'Monitor AOC Gaming 27" 300hz',
       category: 'Monitores',
-      image: 'assets/images/monitor-full-hd.png',
+      image: 'assets/images/monitor-aoc-27-300.png',
       price: 799.90,
       reviews: 45,
       installments: true,
@@ -244,13 +247,16 @@ export class Home {
     );
   }
 
-  addToCart(product: Product): void {
-    this.cartCount++;
-
-    this.showToast(
-      `${product.name} adicionado ao carrinho!`
-    );
-  }
+addToCart(product: Product): void {
+  this.carrinhoService.adicionar({
+    id: product.id,
+    name: product.name,
+    price: product.price,
+    image: product.image,
+    category: product.category
+  });
+  this.showToast(`${product.name} adicionado ao carrinho!`);
+}
 
   showCart(): void {
     this.showToast(
@@ -274,7 +280,6 @@ export class Home {
       return;
     }
 
-    // Sem API, a inscrição não é enviada a um servidor.
     this.showToast(
       'Cadastro demonstrativo recebido! A newsletter ainda precisa ser integrada.'
     );

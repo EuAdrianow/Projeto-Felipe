@@ -1,17 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { CardsComponent, Produto } from '../../componentes/cards/cards';
+import { Cards, Produto } from '../../componentes/cards/cards';
+import { CarrinhoService } from '../../services/carrinhoservice/carrinhoservice';
 
 @Component({
   selector: 'app-hardwares',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, CardsComponent],
+  imports: [CommonModule, FormsModule, RouterLink, Cards],
   templateUrl: './hardwares.html',
   styleUrls: ['./hardwares.css']
 })
 export class Hardwares {
+  private readonly carrinho = inject(CarrinhoService);
   titulo = 'Hardwares';
   tituloHtml = 'O poder por trás do <span>seu desempenho.</span>';
   chamada = 'MONTE UMA MÁQUINA À SUA ALTURA';
@@ -24,12 +26,12 @@ export class Hardwares {
   mensagem = '';
 
   produtos: Produto[] = [
-      { id: 11, nome: 'GeForce RTX 4060 8 GB', categoria: 'Placas de vídeo', descricao: 'Gráficos detalhados com tecnologias modernas.', preco: 2199, precoAnterior: 2499, imagem: 'https://placehold.co/600x420/21152d/cb9aff?text=RTX+4060', selo: 'Oferta', especificacoes: ['8 GB GDDR6', 'PCIe 4.0'], avaliacao: 4.8, estoque: true },
-      { id: 12, nome: 'Radeon RX 7600 8 GB', categoria: 'Placas de vídeo', descricao: 'Performance para jogos em Full HD.', preco: 1899, precoAnterior: 2099, imagem: 'https://placehold.co/600x420/21152d/cb9aff?text=Radeon+RX+7600', selo: '', especificacoes: ['8 GB GDDR6', 'PCIe 4.0'], avaliacao: 4.6, estoque: true },
-      { id: 13, nome: 'Ryzen 5 5600', categoria: 'Processadores', descricao: 'Ótimo equilíbrio entre preço e desempenho.', preco: 799, precoAnterior: 899, imagem: 'https://placehold.co/600x420/21152d/cb9aff?text=Ryzen+5+5600', selo: 'Mais vendido', especificacoes: ['6 núcleos', 'AM4'], avaliacao: 4.9, estoque: true },
-      { id: 14, nome: 'Intel Core i5 série gamer', categoria: 'Processadores', descricao: 'Velocidade para jogos e produtividade.', preco: 1199, precoAnterior: 1299, imagem: 'https://placehold.co/600x420/21152d/cb9aff?text=Intel+Core+i5', selo: '', especificacoes: ['Multitarefas', 'Alto desempenho'], avaliacao: 4.6, estoque: true },
-      { id: 15, nome: 'SSD NVMe 1 TB', categoria: 'Armazenamento', descricao: 'Carregue jogos e aplicativos em menos tempo.', preco: 429, precoAnterior: 499, imagem: 'https://placehold.co/600x420/21152d/cb9aff?text=SSD+NVMe', selo: '', especificacoes: ['M.2 NVMe', '1 TB'], avaliacao: 4.7, estoque: true },
-      { id: 16, nome: 'Memória DDR4 16 GB', categoria: 'Memória RAM', descricao: 'Mais fluidez para jogos e multitarefa.', preco: 239, precoAnterior: 279, imagem: 'https://placehold.co/600x420/21152d/cb9aff?text=DDR4+16GB', selo: '', especificacoes: ['16 GB', 'DDR4'], avaliacao: 4.5, estoque: true }
+      { id: 11, nome: 'GeForce RTX 4060 8 GB', categoria: 'Placas de vídeo', descricao: 'Gráficos detalhados com tecnologias modernas.', preco: 2199, precoAnterior: 2499, imagem: 'assets/images/rtx-4060.png', selo: 'Oferta', especificacoes: ['8 GB GDDR6', 'PCIe 4.0'], avaliacao: 4.8, estoque: true },
+      { id: 12, nome: 'Radeon RX 7600 8 GB', categoria: 'Placas de vídeo', descricao: 'Performance para jogos em Full HD.', preco: 1899, precoAnterior: 2099, imagem: 'assets/images/rx-7600.webp', selo: '', especificacoes: ['8 GB GDDR6', 'PCIe 4.0'], avaliacao: 4.6, estoque: true },
+      { id: 13, nome: 'Ryzen 5 5600', categoria: 'Processadores', descricao: 'Ótimo equilíbrio entre preço e desempenho.', preco: 799, precoAnterior: 899, imagem: 'assets/images/ryzen-5-5600.png', selo: 'Mais vendido', especificacoes: ['6 núcleos', 'AM4'], avaliacao: 4.9, estoque: true },
+      { id: 14, nome: 'Intel Core i5 12400F', categoria: 'Processadores', descricao: 'Velocidade para jogos e produtividade.', preco: 1199, precoAnterior: 1299, imagem: 'assets/images/i5-12400f.webp', selo: '', especificacoes: ['Multitarefas', 'Alto desempenho'], avaliacao: 4.6, estoque: true },
+      { id: 15, nome: 'SSD NVMe M.2 1 TB', categoria: 'Armazenamento', descricao: 'Carregue jogos e aplicativos em menos tempo.', preco: 429, precoAnterior: 499, imagem: 'assets/images/ssd-nvme-1tb.png', selo: '', especificacoes: ['M.2 NVMe', '1 TB'], avaliacao: 4.7, estoque: true },
+      { id: 16, nome: 'Memória DDR4 16 GB XPG', categoria: 'Memória RAM', descricao: 'Mais fluidez para jogos e multitarefa.', preco: 239, precoAnterior: 279, imagem: 'assets/images/ram-ddr4-16gb.png', selo: '', especificacoes: ['16 GB', 'DDR4'], avaliacao: 4.5, estoque: true }
   ];
 
   get produtosFiltrados(): Produto[] {
@@ -49,8 +51,9 @@ export class Hardwares {
     return resultado;
   }
 
-  adicionarAoCarrinho(produto: Produto): void {
-    this.mensagem = `${produto.nome} foi adicionado ao carrinho (demonstração).`;
-    window.setTimeout(() => this.mensagem = '', 3000);
-  }
+adicionarAoCarrinho(produto: Produto): void {
+  this.carrinho.adicionar(produto);
+  this.mensagem = `${produto.nome} foi adicionado ao carrinho.`;
+  window.setTimeout(() => (this.mensagem = ''), 3000);
+}
 }

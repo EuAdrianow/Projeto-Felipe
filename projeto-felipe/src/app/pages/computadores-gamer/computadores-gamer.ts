@@ -1,17 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { CardsComponent, Produto } from '../../componentes/cards/cards';
+import { Cards, Produto } from '../../componentes/cards/cards';
+import { CarrinhoService } from '../../services/carrinhoservice/carrinhoservice';
 
 @Component({
   selector: 'app-computadores-gamer',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, CardsComponent],
+  imports: [CommonModule, FormsModule, RouterLink, Cards],
   templateUrl: './computadores-gamer.html',
   styleUrls: ['./computadores-gamer.css']
 })
 export class ComputadoresGamer {
+  private readonly carrinho = inject(CarrinhoService);
   titulo = 'Computadores gamer';
   tituloHtml = 'Seu próximo PC. <span>Seu próximo nível.</span>';
   chamada = 'PRONTO PARA ENTRAR NO JOGO?';
@@ -24,10 +26,10 @@ export class ComputadoresGamer {
   mensagem = '';
 
   produtos: Produto[] = [
-      { id: 21, nome: 'Arena Starter', categoria: 'Entrada', descricao: 'Uma base versátil para jogar e evoluir o setup.', preco: 3299, precoAnterior: 3599, imagem: 'https://placehold.co/600x420/21152d/cb9aff?text=Arena+Starter', selo: 'Entrada', especificacoes: ['Ryzen 5', '16 GB RAM', 'SSD 1 TB'], avaliacao: 4.7, estoque: true },
-      { id: 22, nome: 'Arena Pulse', categoria: 'Intermediário', descricao: 'Equilíbrio para jogos competitivos e uso diário.', preco: 4699, precoAnterior: 4999, imagem: 'https://placehold.co/600x420/21152d/cb9aff?text=Arena+Pulse', selo: 'Mais vendido', especificacoes: ['Ryzen 5', 'RTX 4060', '16 GB RAM'], avaliacao: 4.8, estoque: true },
-      { id: 23, nome: 'Arena Phantom', categoria: 'Alta performance', descricao: 'Mais potência gráfica para elevar a qualidade visual.', preco: 6899, precoAnterior: 7299, imagem: 'https://placehold.co/600x420/21152d/cb9aff?text=Arena+Phantom', selo: 'Performance', especificacoes: ['Ryzen 7', 'RTX série 40', '32 GB RAM'], avaliacao: 4.9, estoque: true },
-      { id: 24, nome: 'Arena Creator', categoria: 'Alta performance', descricao: 'Setup robusto para jogar, criar e transmitir.', preco: 7999, precoAnterior: 8499, imagem: 'https://placehold.co/600x420/21152d/cb9aff?text=Arena+Creator', selo: '', especificacoes: ['CPU multicore', '32 GB RAM', 'SSD 2 TB'], avaliacao: 4.7, estoque: true }
+      { id: 21, nome: 'Arena Starter', categoria: 'Entrada', descricao: 'Uma base versátil para jogar e evoluir o setup.', preco: 3299, precoAnterior: 3599, imagem: 'assets/images/pc-entrada-1.png', selo: 'Entrada', especificacoes: ['Ryzen 5', '16 GB RAM', 'SSD 1 TB'], avaliacao: 4.7, estoque: true },
+      { id: 22, nome: 'Arena Pulse', categoria: 'Intermediário', descricao: 'Equilíbrio para jogos competitivos e uso diário.', preco: 4699, precoAnterior: 4999, imagem: 'assets/images/pc-intermediario-1.png', selo: 'Mais vendido', especificacoes: ['Ryzen 5', 'RTX 4060', '16 GB RAM'], avaliacao: 4.8, estoque: true },
+      { id: 23, nome: 'Arena Phantom', categoria: 'Alta performance', descricao: 'Mais potência gráfica para elevar a qualidade visual.', preco: 6899, precoAnterior: 7299, imagem: 'assets/images/pc-highend-1.png', selo: 'Performance', especificacoes: ['Ryzen 7', 'RTX série 40', '32 GB RAM'], avaliacao: 4.9, estoque: true },
+      { id: 24, nome: 'Arena Creator', categoria: 'Alta performance', descricao: 'Setup robusto para jogar, criar e transmitir.', preco: 7999, precoAnterior: 8499, imagem: 'assets/images/pc-highend-2.png', selo: '', especificacoes: ['CPU multicore', '32 GB RAM', 'SSD 2 TB'], avaliacao: 4.7, estoque: true }
   ];
 
   get produtosFiltrados(): Produto[] {
@@ -47,8 +49,9 @@ export class ComputadoresGamer {
     return resultado;
   }
 
-  adicionarAoCarrinho(produto: Produto): void {
-    this.mensagem = `${produto.nome} foi adicionado ao carrinho (demonstração).`;
-    window.setTimeout(() => this.mensagem = '', 3000);
-  }
+adicionarAoCarrinho(produto: Produto): void {
+  this.carrinho.adicionar(produto);
+  this.mensagem = `${produto.nome} foi adicionado ao carrinho.`;
+  window.setTimeout(() => (this.mensagem = ''), 3000);
+}
 }

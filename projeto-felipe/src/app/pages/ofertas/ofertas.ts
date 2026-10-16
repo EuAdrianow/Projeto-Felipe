@@ -199,11 +199,6 @@ export class Ofertas {
   }
 
   addToCart(offer: Oferta): void {
-    /*
-     * Demonstração local.
-     * Integre aqui o serviço de carrinho da sua aplicação
-     * para adicionar o produto ao carrinho real.
-     */
     this.toastMessage = `${offer.name} selecionado!`;
 
     setTimeout(() => {

@@ -9,6 +9,8 @@ import { Hardwares } from './pages/hardwares/hardwares';
 import { ComputadoresGamer } from './pages/computadores-gamer/computadores-gamer';
 import { Monitores } from './pages/monitores/monitores';
 import { Perifericos } from './pages/perifericos/perifericos';
+import { Carrinho } from './pages/carrinho/carrinho';
+import { RecuperarSenha } from './pages/recuperar-senha/recuperar-senha';
 
 export const routes: Routes = [
   {
@@ -47,6 +49,13 @@ export const routes: Routes = [
     path: 'perifericos',
     component: Perifericos
   },
+  {
+    path: 'carrinho', 
+    component: Carrinho
+  },
+  { 
+    path: 'recuperar-senha',
+    component: RecuperarSenha },
   {
     path: '**',
     component: NotFound

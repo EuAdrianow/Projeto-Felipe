@@ -1,0 +1,86 @@
+<div class="carrinho-page">
+  <app-header></app-header>
+  <app-menu></app-menu>
+
+  <main class="page-shell">
+    <div class="breadcrumb">
+      <a routerLink="/">TechPec</a> / Carrinho
+    </div>
+
+    <section class="hero">
+      <p class="eyebrow">SEU SETUP, ITEM A ITEM</p>
+      <h1>Carrinho de <span>compras</span></h1>
+      <p class="intro">
+        Revise os produtos, ajuste as quantidades e finalize quando estiver pronto.
+      </p>
+    </section>
+
+    @if (carrinho.itens().length === 0) {
+      <div class="empty-cart">
+        <div class="empty-icon" aria-hidden="true">🛒</div>
+        <h2>Seu carrinho está vazio</h2>
+        <p>Explore o catálogo e adicione os componentes do seu próximo upgrade.</p>
+        <a routerLink="/produtos" class="btn-primary">Ver produtos ↗</a>
+      </div>
+    } @else {
+      <div class="cart-layout">
+        <section class="cart-items" aria-label="Itens do carrinho">
+          @for (item of carrinho.itens(); track item.id) {
+            <article class="cart-item">
+              <div class="item-image">
+                <img [src]="item.imagem" [alt]="item.nome" />
+              </div>
+
+              <div class="item-info">
+                @if (item.categoria) {
+                  <span class="item-category">{{ item.categoria }}</span>
+                }
+                <h3>{{ item.nome }}</h3>
+                <p class="item-unit">
+                  {{ item.preco | currency: 'BRL' : 'symbol' : '1.2-2' }} cada
+                </p>
+              </div>
+
+              <div class="item-qty" aria-label="Quantidade">
+                <button type="button" (click)="carrinho.decrementar(item.id)" aria-label="Diminuir">−</button>
+                <span>{{ item.quantidade }}</span>
+                <button type="button" (click)="carrinho.incrementar(item.id)" aria-label="Aumentar">+</button>
+              </div>
+
+              <div class="item-total">
+                <strong>
+                  {{ item.preco * item.quantidade | currency: 'BRL' : 'symbol' : '1.2-2' }}
+                </strong>
+                <button type="button" class="remove-btn" (click)="carrinho.remover(item.id)">
+                  Remover
+                </button>
+              </div>
+            </article>
+          }
+        </section>
+
+        <aside class="cart-summary">
+          <h2>Resumo</h2>
+          <div class="summary-row">
+            <span>Itens</span>
+            <span>{{ carrinho.quantidadeTotal() }}</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total</span>
+            <strong>{{ carrinho.total() | currency: 'BRL' : 'symbol' : '1.2-2' }}</strong>
+          </div>
+          <p class="summary-note">Frete e pagamento na próxima etapa (demonstração).</p>
+          <button type="button" class="btn-primary full" (click)="finalizarPedido()">
+            Finalizar pedido ↗
+          </button>
+          <button type="button" class="btn-ghost full" (click)="carrinho.limpar()">
+            Esvaziar carrinho
+          </button>
+          <a routerLink="/produtos" class="continue-link">Continuar comprando</a>
+        </aside>
+      </div>
+    }
+  </main>
+
+  <app-footer></app-footer>
+</div>

@@ -19,14 +19,28 @@
                 </span>
             </a>
 
-            <a class="header-action cart-link" routerLink="/home" fragment="produtos"
-                aria-label="Ver produtos para adicionar ao carrinho">
-                <span class="action-icon">🛒</span>
-                <span class="action-text">
-                    <small>Explore</small>
-                    <strong>Produtos</strong>
-                </span>
-            </a>
+            <a
+  class="header-action cart-link"
+  routerLink="/carrinho"
+  aria-label="Abrir carrinho"
+>
+  <span class="action-icon cart-icon-wrap">
+    🛒
+    @if (carrinho.quantidadeTotal() > 0) {
+      <span class="cart-badge">{{ carrinho.quantidadeTotal() }}</span>
+    }
+  </span>
+  <span class="action-text">
+    <small>Carrinho</small>
+    <strong>
+      @if (carrinho.quantidadeTotal() > 0) {
+        {{ carrinho.quantidadeTotal() }} item(ns)
+      } @else {
+        Vazio
+      }
+    </strong>
+  </span>
+</a>
         </div>
 
     </div>

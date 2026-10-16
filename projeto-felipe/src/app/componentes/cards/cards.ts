@@ -22,7 +22,7 @@ export interface Produto {
   templateUrl: './cards.html',
   styleUrls: ['./cards.css']
 })
-export class CardsComponent {
+export class Cards {
   @Input() produtos: Produto[] = [];
   @Input() mostrarCategoria = true;
   @Output() adicionar = new EventEmitter<Produto>();
@@ -30,12 +30,19 @@ export class CardsComponent {
 
   favoritos = new Set<number>();
 
+  trackById(_: number, produto: Produto): number {
+    return produto.id;
+  }
+
   alternarFavorito(produto: Produto): void {
-    if (this.favoritos.has(produto.id)) {
-      this.favoritos.delete(produto.id);
+    // Nova referência do Set para o Angular detectar a mudança
+    const next = new Set(this.favoritos);
+    if (next.has(produto.id)) {
+      next.delete(produto.id);
     } else {
-      this.favoritos.add(produto.id);
+      next.add(produto.id);
     }
+    this.favoritos = next;
     this.favoritar.emit(produto);
   }
 

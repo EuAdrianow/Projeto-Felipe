@@ -1,14 +1,26 @@
-<article class="product-card" *ngFor="let produto of produtos">
+<article
+  class="product-card"
+  *ngFor="let produto of produtos; trackBy: trackById"
+>
   <div class="product-image">
     <span class="product-badge" *ngIf="produto.selo">{{ produto.selo }}</span>
-    <button class="favorite" type="button"
+    <button
+      class="favorite"
+      type="button"
       [class.active]="favoritos.has(produto.id)"
-      [attr.aria-label]="favoritos.has(produto.id) ? 'Remover dos favoritos' : 'Adicionar aos favoritos'"
-      (click)="alternarFavorito(produto)">
+      [attr.aria-label]="
+        favoritos.has(produto.id) ? 'Remover dos favoritos' : 'Adicionar aos favoritos'
+      "
+      (click)="alternarFavorito(produto)"
+    >
       {{ favoritos.has(produto.id) ? '♥' : '♡' }}
     </button>
-    <img [src]="produto.imagem" [alt]="produto.nome" loading="lazy"
-      (error)="imagemIndisponivel($event)">
+    <img
+      [src]="produto.imagem"
+      [alt]="produto.nome"
+      loading="lazy"
+      (error)="imagemIndisponivel($event)"
+    />
   </div>
 
   <div class="product-content">
@@ -20,22 +32,31 @@
       <li *ngFor="let spec of produto.especificacoes">{{ spec }}</li>
     </ul>
 
-    <div class="rating" *ngIf="produto.avaliacao">
-      <span aria-hidden="true">★</span> {{ produto.avaliacao | number:'1.1-1' }}
+    <div class="rating" *ngIf="produto.avaliacao != null">
+      <span aria-hidden="true">★</span>
+      {{ produto.avaliacao | number: '1.1-1' }}
       <span class="rating-label">avaliação</span>
     </div>
 
     <div class="price-area">
-      <span class="old-price" *ngIf="produto.precoAnterior">
-        {{ produto.precoAnterior | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+      <span class="old-price" *ngIf="produto.precoAnterior != null">
+        {{ produto.precoAnterior | currency: 'BRL' : 'symbol' : '1.2-2' }}
       </span>
-      <strong class="price">{{ produto.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</strong>
-      <span class="installments">ou até 10x de
-        {{ produto.preco / 10 | currency:'BRL':'symbol':'1.2-2':'pt-BR' }} sem juros*</span>
+      <strong class="price">
+        {{ produto.preco | currency: 'BRL' : 'symbol' : '1.2-2' }}
+      </strong>
+      <span class="installments">
+        ou até 10x de
+        {{ produto.preco / 10 | currency: 'BRL' : 'symbol' : '1.2-2' }} sem juros*
+      </span>
     </div>
 
-    <button class="buy-button" type="button" [disabled]="produto.estoque === false"
-      (click)="adicionar.emit(produto)">
+    <button
+      class="buy-button"
+      type="button"
+      [disabled]="produto.estoque === false"
+      (click)="adicionar.emit(produto)"
+    >
       {{ produto.estoque === false ? 'Indisponível' : 'Adicionar ao carrinho' }}
       <span aria-hidden="true">↗</span>
     </button>
